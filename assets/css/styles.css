@@ -1,0 +1,207 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-image: url('https://www.shutterstock.com/image-vector/vector-children-play-together-kinder-600nw-1881451687.jpg'); /* Path to your background image */
+    background-size: cover; /* Ensures the image covers the entire screen */
+    background-repeat: no-repeat; /* Ensures the image doesn't repeat */
+    margin: 0;
+    padding: 0;
+    color: #333;
+    text-align: center;
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+
+
+/* Header Styling */
+header {
+    background: linear-gradient(90deg, #ff7043, #ff5722); /* Vibrant orange gradient */
+    color: white;
+    text-align: center;
+    padding: 30px 0;
+    font-size: 28px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0; /* Keeps header at the top while scrolling */
+    z-index: 1000;
+}
+
+/* Main Title (h1) Styling */
+h1 {
+    font-size: 3rem;
+    color: #ff3b3b; /* Bright red for title */
+    font-family: 'Verdana', Geneva, Tahoma, sans-serif;
+    background: rgba(255, 255, 255, 0.95); /* Semi-transparent white for contrast */
+    padding: 10px 20px;
+    border-radius: 12px;
+    margin: 2px auto;
+    display: inline-block;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    text-shadow: 2px 2px #ff7043; /* Adds dimension to the text */
+}
+h2 {
+    font-size: 1.5rem;
+    color: #ff2600;
+    font-family: 'Verdana', Geneva, Tahoma, sans-serif;
+    background: rgba(255, 255, 255, 0.95); /* Semi-transparent white for contrast */
+    padding: 5px 10px;
+    border-radius: 12px;
+    display: inline-block;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
+}
+
+/* Button Container Styling */
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Space between buttons */
+    margin-top: 30px;
+}
+
+/* Button Styling */
+button {
+    background: #FF4433; /* Bright orange gradient */
+    color: white;
+    padding: 14px 24px;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 12px;
+    border: none;
+    font-weight: bold;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+}
+
+button:hover {
+    background: linear-gradient(90deg, #ff6d00, #ff3d00); /* Deeper orange gradient */
+    transform: translateY(-4px); /* Lift effect */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+}
+
+
+/* Image Styling */
+img {
+    display: block;
+    margin: 40px auto; /* Centers image */
+    max-width: 80%; /* Makes image responsive */
+    max-height: 300px; /* Further reduces the height of the image */
+    height: auto; /* Maintains aspect ratio */
+    border-radius: 15px; /* Smooth rounded corners */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow for depth */
+}
+
+
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 40px auto;
+    background: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px); /* Blurs the background for a modern look */
+}
+
+input, select,textarea {
+    padding: 10px;
+    margin: 2px 0;
+    border: 2px solid #ffa726; /* Vibrant orange border */
+    border-radius: 8px;
+    font-size: 16px;
+    background-color: #fff9c4; /* Light yellow for inputs */
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #ff9100; /* Darker orange focus */
+    background-color: #fff5a3; /* Slightly darker yellow on focus */
+    outline: none;
+}
+
+/* Table Styling */
+table {
+    width: 90%;
+    margin: 40px auto;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.95); /* Semi-transparent white */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    overflow: hidden; /* Ensures rounded corners work */
+}
+
+table, th, td {
+    border: 2px solid #ffa726; /* Orange borders */
+}
+
+th, td {
+    padding: 16px;
+    text-align: left;
+    font-size: 18px;
+    color: #333;
+}
+
+table th {
+    background: linear-gradient(90deg, #ff7043, #ff5722); /* Bold orange gradient */
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+table tr:nth-child(even) {
+    background-color: #fffde7; /* Light yellow for even rows */
+}
+
+table tr:hover {
+    background-color: #ffecb3; /* Slightly darker yellow on hover */
+}
+
+/* Main Content Styling */
+main {
+    padding: 40px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+    
+}
+
+/* Footer Styling */
+footer {
+    background: #ff5722;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 16px;
+    margin-top: 40px;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+        padding: 10px 20px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 10px 16px;
+    }
+
+    table, th, td {
+        font-size: 16px;
+    }
+
+    form {
+        width: 90%;
+        padding: 20px;
+    }
+}
+
