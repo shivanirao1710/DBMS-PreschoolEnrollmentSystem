@@ -57,6 +57,9 @@
 <?php
 include('config.php');  // Include your database connection file
 
+// Initialize error messages
+$errors = [];
+
 // Check if the form was submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Get student details from the form
@@ -68,43 +71,62 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $address = $_POST['address'];
     $course_id = $_POST['course_id'];
 
-    // Assertion for First Name (Only letters allowed)
-    assert(preg_match("/^[a-zA-Z ]*$/", $first_name), "First Name should only contain letters and spaces.");
+    // Validation for First Name (Only letters allowed)
+    if (empty($first_name) || !preg_match("/^[a-zA-Z ]*$/", $first_name)) {
+        $errors[] = "First Name should only contain letters and spaces.";
+    }
 
-    // Assertion for Last Name (Only letters allowed)
-    assert(preg_match("/^[a-zA-Z ]*$/", $last_name), "Last Name should only contain letters and spaces.");
+    // Validation for Last Name (Only letters allowed)
+    if (empty($last_name) || !preg_match("/^[a-zA-Z ]*$/", $last_name)) {
+        $errors[] = "Last Name should only contain letters and spaces.";
+    }
 
-    // Assertion for Contact Number (Should be numeric and exactly 10 digits)
-    assert(is_numeric($contact_number) && strlen($contact_number) == 10, "Contact number should be a 10-digit numeric value.");
+    // Validation for Contact Number (Should be numeric and exactly 10 digits)
+    if (empty($contact_number) || !is_numeric($contact_number) || strlen($contact_number) != 10) {
+        $errors[] = "Contact number should be a 10-digit numeric value.";
+    }
 
-    // Assertions to ensure other fields are not empty
-    assert(!empty($first_name), "First name cannot be empty.");
-    assert(!empty($last_name), "Last name cannot be empty.");
-    assert(!empty($dob), "Date of birth cannot be empty.");
-    assert(!empty($parent_name), "Parent's name cannot be empty.");
-    assert(!empty($contact_number), "Contact number cannot be empty.");
-    assert(!empty($address), "Address cannot be empty.");
+    // Ensure other fields are not empty
+    if (empty($dob)) {
+        $errors[] = "Date of birth cannot be empty.";
+    }
 
-    // Proceed with the rest of the logic if assertions pass
+    if (empty($parent_name)) {
+        $errors[] = "Parent's name cannot be empty.";
+    }
 
-    // Insert student data into the 'students' table
-    $sql_student = "INSERT INTO students (first_name, last_name, dob, parent_name, contact_number, address)
-                    VALUES ('$first_name', '$last_name', '$dob', '$parent_name', '$contact_number', '$address')";
+    if (empty($address)) {
+        $errors[] = "Address cannot be empty.";
+    }
 
-    if ($conn->query($sql_student) === TRUE) {
-        $student_id = $conn->insert_id;  // Get the last inserted student ID
+    // If there are no validation errors, proceed with the database insertion
+    if (empty($errors)) {
+        // Insert student data into the 'students' table
+        $sql_student = "INSERT INTO students (first_name, last_name, dob, parent_name, contact_number, address)
+                        VALUES ('$first_name', '$last_name', '$dob', '$parent_name', '$contact_number', '$address')";
 
-        // Insert enrollment data into the 'enrollment' table
-        $sql_enrollment = "INSERT INTO enrollment (student_id, course_id, enrollment_date)
-                           VALUES ('$student_id', '$course_id', NOW())";
+        if ($conn->query($sql_student) === TRUE) {
+            $student_id = $conn->insert_id;  // Get the last inserted student ID
 
-        if ($conn->query($sql_enrollment) === TRUE) {
-            echo "Enrollment successful!";
+            // Insert enrollment data into the 'enrollment' table
+            $sql_enrollment = "INSERT INTO enrollment (student_id, course_id, enrollment_date)
+                               VALUES ('$student_id', '$course_id', NOW())";
+
+            if ($conn->query($sql_enrollment) === TRUE) {
+                echo "Enrollment successful!";
+            } else {
+                echo "Error: " . $sql_enrollment . "<br>" . $conn->error;
+            }
         } else {
-            echo "Error: " . $sql_enrollment . "<br>" . $conn->error;
+            echo "Error: " . $sql_student . "<br>" . $conn->error;
         }
     } else {
-        echo "Error: " . $sql_student . "<br>" . $conn->error;
+        // Display errors
+        echo "<ul>";
+        foreach ($errors as $error) {
+            echo "<li>" . $error . "</li>";
+        }
+        echo "</ul>";
     }
 }
 ?>
