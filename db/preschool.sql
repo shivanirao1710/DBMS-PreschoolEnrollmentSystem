@@ -61,11 +61,11 @@ INSERT INTO students (first_name, last_name, dob, parent_name, contact_number, a
 
 -- Insert Sample Data into Teachers Table
 INSERT INTO teachers (first_name, last_name, subject, hire_date, contact_number) VALUES
-('Mr.', 'Williams', 'Math', '2015-08-01', '9876543210'),
-('Ms.', 'Jones', 'Science', '2016-09-01', '9876543211'),
-('Mr.', 'Miller', 'English', '2017-10-01', '9876543212'),
-('Ms.', 'Davis', 'History', '2018-11-01', '9876543213'),
-('Mr.', 'Garcia', 'Art', '2019-12-01', '9876543214');
+('Mr.', 'Williams', 'Math Play', '2015-08-01', '9876543210'),
+('Ms.', 'Jones', 'Science Fun', '2016-09-01', '9876543211'),
+('Mr.', 'Miller', 'English Play', '2017-10-01', '9876543212'),
+('Ms.', 'Davis', 'History Fun', '2018-11-01', '9876543213'),
+('Mr.', 'Garcia', 'Art & Craft', '2019-12-01', '9876543214');
 
 -- Insert Sample Data into Courses Table
 INSERT INTO courses (course_name, description, duration) VALUES
